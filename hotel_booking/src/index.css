@@ -67,3 +67,16 @@ body{
 .featuredTitles .titles {
   padding-left: 20px;
 }
+
+/*? hotels_list */
+
+.hotels_list{
+
+  background:  linear-gradient(to right, #319795 30%, transparent 70% ), url(./assets/banner3.jpg);
+  width: 87vw;
+  height: 300px;
+  margin: 0px 100px;
+  object-fit: cover;
+  border-radius: 20px;
+  background-size: 100%, 100%;
+}

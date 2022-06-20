@@ -1,11 +1,12 @@
 import "./App.css";
 import Home from "./pages/Home";
 import { ChakraProvider } from "@chakra-ui/react";
-import Browese from "./components/Browese";
+import Hotels from "./pages/Hotels";
+
 function App() {
   return (
     <ChakraProvider>
-      <Home />
+      <Hotels />
     </ChakraProvider>
   );
 }
