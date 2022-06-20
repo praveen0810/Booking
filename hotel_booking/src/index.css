@@ -7,13 +7,56 @@
 body{
   font-family: 'Poppins', sans-serif;
 }
-
+.header_top{
+  margin-bottom: 100px;
+}
 .header{
   background:  linear-gradient(to right, #319795 30%, transparent 70% ), url(./assets/back.jpg);
   width: 87vw;
-  height: 70vh;
+  height: 500px;
   margin: 0px 100px;
   object-fit: cover;
   border-radius: 20px;
   background-size: 100%, 100%;
 }
+
+/************ featured */
+
+.featured{
+  width: 100%;
+  display: flex;
+  margin-left: 0px;
+  padding: 0px 150px 20px 150px;
+  /* position: absolute; */
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 1;
+
+}
+
+.featuredItem{
+  position: relative;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 250px;
+  flex:1
+}
+
+.featuredImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featuredTitles{
+  position: absolute;
+  bottom: 20px;
+  display: none;
+  left: 20px;
+  transition: 1s ease all;
+}
+.featuredItem:hover .featuredTitles{
+  display: block;
+}
+
