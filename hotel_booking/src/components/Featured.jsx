@@ -1,3 +1,5 @@
+import React from "react";
+import { Heading, Text } from "@chakra-ui/react";
 const Featured = () => {
   return (
     <div className="featured">
@@ -8,8 +10,12 @@ const Featured = () => {
           className="featuredImg"
         />
         <div className="featuredTitles">
-          <h1>Dublin</h1>
-          <h2>123 properties</h2>
+          <div className="titles">
+            <Heading as="h3" size="lg">
+              Dublin
+            </Heading>
+            <Text>123 properties</Text>
+          </div>
         </div>
       </div>
 
@@ -20,8 +26,12 @@ const Featured = () => {
           className="featuredImg"
         />
         <div className="featuredTitles">
-          <h1>Reno</h1>
-          <h2>533 properties</h2>
+          <div className="titles">
+            <Heading as="h3" size="lg">
+              Reno
+            </Heading>
+            <Text>533 properties</Text>
+          </div>
         </div>
       </div>
       <div className="featuredItem">
@@ -31,8 +41,12 @@ const Featured = () => {
           className="featuredImg"
         />
         <div className="featuredTitles">
-          <h1>Austin</h1>
-          <h2>532 properties</h2>
+          <div className="titles">
+            <Heading as="h3" size="lg">
+              Austin
+            </Heading>
+            <Text>532 properties</Text>
+          </div>
         </div>
       </div>
     </div>

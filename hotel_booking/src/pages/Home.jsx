@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import Header from "../components/Header";
 import Featured from "../components/Featured";
 import Browese from "../components/Browese";
+import HighRated from "../components/HighRated";
 const Home = () => {
   return (
     <>
@@ -10,6 +11,7 @@ const Home = () => {
       <Header />
       <Featured />
       <Browese />
+      <HighRated />
     </>
   );
 };
