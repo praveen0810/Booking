@@ -13,6 +13,7 @@ import {
   ModalCloseButton,
   ModalHeader,
   ModalBody,
+  useDisclosure,
   ModalContent,
   ModalFooter,
   Button,
@@ -20,7 +21,7 @@ import {
 import { GoLocation } from "react-icons/go";
 import {
   AiOutlineArrowLeft,
-  AiOutlineRightCircle,
+  AiOutlineArrowRight,
   AiOutlineClose,
 } from "react-icons/ai";
 
@@ -48,6 +49,7 @@ const photos = [
 const HotelLeft = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -87,7 +89,7 @@ const HotelLeft = () => {
         Book a stay over $114 at this property and get a free airport taxi
       </Text>
 
-      {open && (
+      {/* {open && (
         <div className="slider">
           <Icon
             as={AiOutlineClose}
@@ -108,13 +110,47 @@ const HotelLeft = () => {
             onClick={() => handleMove("r")}
           />
         </div>
-      )}
+      )} */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Preview</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <div className="slider">
+              <Icon
+                as={AiOutlineArrowLeft}
+                className="arrow"
+                onClick={() => handleMove("l")}
+              />
+              <div className="sliderWrapper">
+                <img
+                  src={photos[slideNumber].src}
+                  alt=""
+                  className="sliderImg"
+                />
+              </div>
+              <Icon
+                as={AiOutlineArrowRight}
+                className="arrow"
+                onClick={() => handleMove("r")}
+              />
+            </div>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Box>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
           {photos.map((photo, i) => (
             <Box key={i}>
               <Image
-                onClick={() => handleOpen(i)}
+                onClick={onOpen}
                 src={photo.src}
                 alt=""
                 className="hotelImg"
