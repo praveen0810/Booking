@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-
-const mongoose = new mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -32,7 +31,7 @@ const mongoose = new mongoose.Schema(
       required: true,
     },
     isAdmin: {
-      type: String,
+      type: Boolean,
       default: false,
     },
   },
