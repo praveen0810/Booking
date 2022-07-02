@@ -6,10 +6,13 @@ import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
-const Datatable = ({columns}) => {
+const Datatable = ({ hotelsList }) => {
+  console.log("hotelsList", hotelsList);
+
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState();
+  const [perPage, setPerPage] = useState(10);
   const { data, loading, error } = useFetch(`/${path}`);
 
   useEffect(() => {
@@ -55,11 +58,14 @@ const Datatable = ({columns}) => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={list}
-        columns={columns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
+        rows={hotelsList}
+        pageSize={perPage}
+        disableColumnMenu
+        pagination
+        columns={userColumns.concat(actionColumn)}
+        checkboxSelection={false} // or remove it because it's false by default
+        rowsPerPageOptions={[10, 25, 50, 100]}
+        onPageSizeChange={(newPageSize) => setPerPage(newPageSize)}
         getRowId={(row) => row._id}
       />
     </div>

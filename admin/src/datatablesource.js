@@ -1,38 +1,146 @@
+import { Typography, Tooltip } from "@mui/material";
+
 export const userColumns = [
   { field: "_id", headerName: "ID", width: 70 },
   {
-    field: "user",
-    headerName: "User",
-    width: 230,
+    field: "name",
+    headerName: "Name",
+    width: 160,
     renderCell: (params) => {
       return (
-        <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"} alt="avatar" />
-          {params.row.username}
-        </div>
+        <Tooltip title={params.row.name}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 600, cursor: "pointer" }}
+          >
+            {params.row.name}
+          </Typography>
+        </Tooltip>
       );
     },
   },
   {
-    field: "email",
-    headerName: "Email",
-    width: 230,
+    field: "title",
+    headerName: "Title",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.title}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 500, cursor: "pointer" }}
+          >
+            {params.row.title}
+          </Typography>
+        </Tooltip>
+      );
+    },
   },
 
-  {
-    field: "country",
-    headerName: "Country",
-    width: 100,
-  },
   {
     field: "city",
     headerName: "City",
     width: 100,
+
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.city}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 500, cursor: "pointer" }}
+          >
+            {params.row.city}
+          </Typography>
+        </Tooltip>
+      );
+    },
   },
   {
-    field: "phone",
-    headerName: "Phone",
+    field: "distance",
+    headerName: "Distance",
     width: 100,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.distance}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 500, cursor: "pointer" }}
+          >
+            {params.row.distance}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+
+  {
+    field: "cheapestPrice",
+    headerName: "Price",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.cheapestPrice}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 500, cursor: "pointer" }}
+          >
+            ${params.row.cheapestPrice}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+  {
+    field: "address",
+    headerName: "Address",
+    flex: 0.25,
+    minWidth: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.address}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 500, cursor: "pointer" }}
+          >
+            {params.row.address}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+  {
+    field: "desc",
+    headerName: "Desc",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.desc}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 500, cursor: "pointer" }}
+          >
+            {params.row.desc}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+  {
+    field: "type",
+    headerName: "Type",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.type}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 500, cursor: "pointer" }}
+          >
+            {params.row.type}
+          </Typography>
+        </Tooltip>
+      );
+    },
   },
 ];
 
