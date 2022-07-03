@@ -6,6 +6,7 @@ import { useState } from "react";
 import { hotelInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import { addHotel } from "../../database/hotel";
 
 const NewHotel = () => {
   const [files, setFiles] = useState("");
@@ -25,8 +26,6 @@ const NewHotel = () => {
     );
     setRooms(value);
   };
-  
-  console.log(files)
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -53,7 +52,9 @@ const NewHotel = () => {
       };
 
       await axios.post("/hotels", newhotel);
-    } catch (err) {console.log(err)}
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="new">

@@ -10,6 +10,9 @@ import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 
 const Navbar = () => {
+  const getUser = localStorage.getItem("persist:root");
+  const userInfo = JSON.parse(getUser);
+  const userDetails = JSON.parse(userInfo?.user);
   const { dispatch } = useContext(DarkModeContext);
 
   return (
@@ -30,23 +33,15 @@ const Navbar = () => {
               onClick={() => dispatch({ type: "TOGGLE" })}
             />
           </div>
+
           <div className="item">
-            <FullscreenExitOutlinedIcon className="icon" />
-          </div>
-          <div className="item">
-            <NotificationsNoneOutlinedIcon className="icon" />
-            <div className="counter">1</div>
-          </div>
-          <div className="item">
-            <ChatBubbleOutlineOutlinedIcon className="icon" />
-            <div className="counter">2</div>
-          </div>
-          <div className="item">
-            <ListOutlinedIcon className="icon" />
-          </div>
-          <div className="item">
+            {/* https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 */}
             <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={
+                userDetails?.currentUser
+                  ? userDetails?.currentUser?.details?.img
+                  : "https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              }
               alt=""
               className="avatar"
             />

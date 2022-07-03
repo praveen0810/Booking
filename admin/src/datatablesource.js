@@ -1,4 +1,6 @@
 import { Typography, Tooltip } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const userColumns = [
   { field: "_id", headerName: "ID", width: 70 },
@@ -137,6 +139,169 @@ export const userColumns = [
             sx={{ fontWeight: 500, cursor: "pointer" }}
           >
             {params.row.type}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+];
+
+export const roomsColumns = [
+  { field: "_id", headerName: "ID", width: 70 },
+  {
+    field: "title",
+    headerName: "Title",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.title}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 600, cursor: "pointer" }}
+          >
+            {params.row.title}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+  {
+    field: "desc",
+    headerName: "Desc",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.desc}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 600, cursor: "pointer" }}
+          >
+            {params.row.desc}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+  {
+    field: "maxPeople",
+    headerName: "MaxPeople",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.maxPeople}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 600, cursor: "pointer" }}
+          >
+            {params.row.maxPeople}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.price}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 600, cursor: "pointer" }}
+          >
+            {params.row.price}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+];
+export const usersColumns = [
+  { field: "_id", headerName: "ID", width: 70 },
+  {
+    field: "img",
+    headerName: "Profile",
+    width: 70,
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg">
+          <img
+            className="cellImg"
+            src={params.row.img || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
+            alt="avatar"
+          />
+        </div>
+      );
+    },
+  },
+  {
+    field: "username",
+    headerName: "UserName",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.username}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 600, cursor: "pointer" }}
+          >
+            {params.row.username}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.email}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 600, cursor: "pointer" }}
+          >
+            {params.row.email}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+  {
+    field: "phone",
+    headerName: "Phone",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.phone}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 600, cursor: "pointer" }}
+          >
+            {params.row.phone}
+          </Typography>
+        </Tooltip>
+      );
+    },
+  },
+  {
+    field: "isAdmin",
+    headerName: "isAdmin",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <Tooltip title={params.row.isAdmin ? "true" : "false"}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 600, cursor: "pointer" }}
+          >
+            {params.row.isAdmin ? (
+              <CheckIcon color="success" />
+            ) : (
+              <CloseIcon color="warning" />
+            )}
           </Typography>
         </Tooltip>
       );

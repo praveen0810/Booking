@@ -7,6 +7,7 @@ import "./login.scss";
 import { loginAction } from "../../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import Cookies from "universal-cookie";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -15,13 +16,17 @@ const Login = () => {
   });
   const dispatch = useDispatch();
   const { isFetching, error, currentUser } = useSelector((state) => state.user);
+  const cookies = new Cookies();
 
   // const { loading, error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const getUser = localStorage.getItem("persist:root");
   const userInfo = JSON.parse(getUser);
+  localStorage.setItem("token", currentUser?.token);
   const userDetails = JSON.parse(userInfo?.user);
+  // Cookies.set("cookie_name", currentUser?.token, { expires: 365 });
+  cookies.set("access_token", currentUser?.token);
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));

@@ -3,6 +3,7 @@ import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
+import Users from "./pages/users/users";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -13,6 +14,7 @@ import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
 import NewHotel from "./pages/newHotel/NewHotel";
 import NewRoom from "./pages/newRoom/NewRoom";
 import { useDispatch, useSelector } from "react-redux";
+import Rooms from "./pages/rooms/Rooms";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -44,7 +46,7 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List columns={userColumns} />
+                    <Users columns={userColumns} />
                   </ProtectedRoute>
                 }
               />
@@ -96,7 +98,7 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List columns={roomColumns} />
+                    <Rooms columns={roomColumns} />
                   </ProtectedRoute>
                 }
               />

@@ -4,9 +4,15 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Widget = ({ type }) => {
   let data;
+
+  const { usersList } = useSelector((state) => state.users);
+  const { hotelsList } = useSelector((state) => state.hotels);
+  const { roomsList } = useSelector((state) => state.hotels);
 
   //temporary
   const amount = 100;
@@ -17,6 +23,8 @@ const Widget = ({ type }) => {
       data = {
         title: "USERS",
         isMoney: false,
+        total: usersList?.length,
+        links: "/users",
         link: "See all users",
         icon: (
           <PersonOutlinedIcon
@@ -31,9 +39,11 @@ const Widget = ({ type }) => {
       break;
     case "order":
       data = {
-        title: "ORDERS",
+        title: "HOTELS",
         isMoney: false,
-        link: "View all orders",
+        links: "/hotels",
+        total: hotelsList?.length,
+        link: "View all Hotels",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -47,9 +57,11 @@ const Widget = ({ type }) => {
       break;
     case "earning":
       data = {
-        title: "EARNINGS",
+        title: "ROOMS",
         isMoney: true,
-        link: "View net earnings",
+        links: "/rooms",
+        total: roomsList?.length,
+        link: "View all Rooms",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
@@ -82,9 +94,7 @@ const Widget = ({ type }) => {
     <div className="widget">
       <div className="left">
         <span className="title">{data.title}</span>
-        <span className="counter">
-          {data.isMoney && "$"} {amount}
-        </span>
+        <span className="counter">{data?.total ?? 0}</span>
         <span className="link">{data.link}</span>
       </div>
       <div className="right">

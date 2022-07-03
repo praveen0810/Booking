@@ -4,6 +4,8 @@ const hotelSlice = createSlice({
   name: "hotels",
   initialState: {
     hotelsList: [],
+    roomsList: [],
+    isRooms: false,
     isHotels: false,
     success: false,
   },
@@ -11,10 +13,16 @@ const hotelSlice = createSlice({
     actionStart: (state) => {
       state.isHotels = true;
       state.success = false;
+      state.isRooms = false;
     },
     getHotels: (state, action) => {
       state.isHotels = false;
       state.hotelsList = action.payload;
+      state.success = true;
+    },
+    getRooms: (state, action) => {
+      state.isRooms = false;
+      state.roomsList = action.payload;
       state.success = true;
     },
     hotelsError: (state) => {
@@ -24,6 +32,7 @@ const hotelSlice = createSlice({
   },
 });
 
-export const { actionStart, getHotels, hotelsError } = hotelSlice.actions;
+export const { actionStart, getHotels, hotelsError, getRooms } =
+  hotelSlice.actions;
 
 export default hotelSlice.reducer;

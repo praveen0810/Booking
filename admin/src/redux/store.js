@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import authReducer from "./auth";
 import hotelsReducer from "./hotels";
+import usersReducer from "./users";
 import {
   persistStore,
   persistReducer,
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: authReducer,
   hotels: hotelsReducer,
+  users: usersReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

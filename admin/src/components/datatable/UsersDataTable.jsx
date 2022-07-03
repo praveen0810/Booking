@@ -1,12 +1,12 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { userColumns, usersColumns, userRows } from "../../datatablesource";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
-const Datatable = ({ hotelsList }) => {
+const Datatable = ({ usersList }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState();
@@ -56,11 +56,11 @@ const Datatable = ({ hotelsList }) => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={hotelsList}
+        rows={usersList}
         pageSize={perPage}
         disableColumnMenu
         pagination
-        columns={userColumns.concat(actionColumn)}
+        columns={usersColumns.concat(actionColumn)}
         checkboxSelection={false} // or remove it because it's false by default
         rowsPerPageOptions={[10, 25, 50, 100]}
         onPageSizeChange={(newPageSize) => setPerPage(newPageSize)}
