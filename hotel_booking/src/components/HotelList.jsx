@@ -12,7 +12,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const HotelList = () => {
+const HotelList = ({ hotels }) => {
   return (
     <>
       <Center py={6}>
@@ -28,7 +28,7 @@ const HotelList = () => {
           <Flex gap={2}>
             <Box flex="0.5">
               <Image
-                src="https://www.princehotels.com/wp-content/uploads/2019/04/aboutslider2-1.jpg"
+                src={hotels?.photos[0]}
                 alt=""
                 width="300px"
                 height="200px"
@@ -38,11 +38,11 @@ const HotelList = () => {
               <Flex justifyContent={"space-between"}>
                 <Box>
                   <Heading as="h3" size="md" pb="1" color={"#319795"}>
-                    Tower Street Apartments
+                    {hotels?.title}
                   </Heading>
                   <Text fontSize="small" mb="1" pl="0.5">
                     {" "}
-                    500m from center
+                    {hotels?.distance} from center
                   </Text>
                   <Badge
                     rounded="full"
@@ -55,7 +55,7 @@ const HotelList = () => {
                     Free AirPort Taxi
                   </Badge>
                   <Text fontSize={"sm"} fontWeight="500">
-                    Studio, Apartmentwith Air conditioning
+                    {hotels?.address}
                   </Text>
                 </Box>
 
@@ -89,7 +89,7 @@ const HotelList = () => {
                 </Box>
                 <Box flex="0.5" mt={-4}>
                   <Text textAlign={"end"} fontSize="lg">
-                    $112
+                    ${hotels?.cheapestPrice}
                   </Text>
                   <Text fontSize="sm" color="gray.600" pb="2">
                     Includes taxes and fees

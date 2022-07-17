@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import "./search.css";
 import { format } from "date-fns";
 import "react-date-range/dist/styles.css"; // main css file
@@ -17,10 +17,13 @@ import { FaBed } from "react-icons/fa";
 import { IoWoman } from "react-icons/io5";
 import { BsCalendar3 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
+
 const Search = ({ type }) => {
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
-  const [date, setDate] = useState([
+  const [dates, setDates] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
@@ -45,9 +48,14 @@ const Search = ({ type }) => {
     });
   };
 
-  //   const handleSearch = () => {
-  //     navigate("/hotels", { state: { destination, date, options } });
-  //   };
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const { dispatch } = useContext(SearchContext);
+
+  const handleSearch = () => {
+    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+    navigate("/hotels", { state: { destination, dates, options } });
+  };
   return (
     <div className="headerSearch">
       <div className="headerSearchItem">
@@ -65,17 +73,17 @@ const Search = ({ type }) => {
           onClick={() => setOpenDate(!openDate)}
           className="headerSearchText"
         >
-          {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-            date[0].endDate,
+          {`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
+            dates[0].endDate,
             "MM/dd/yyyy"
           )}`}
         </span>
         {openDate && (
           <DateRange
             editableDateInputs={true}
-            onChange={(item) => setDate([item.selection])}
+            onChange={(item) => setDates([item.selection])}
             moveRangeOnFirstSelection={false}
-            ranges={date}
+            ranges={dates}
             className="date"
             minDate={new Date()}
           />
@@ -150,7 +158,11 @@ const Search = ({ type }) => {
         )}
       </div>
       <div className="headerSearchItem">
-        <Button colorScheme="teal" onClick={""}>
+        <Button
+          disabled={!destination}
+          colorScheme="teal"
+          onClick={handleSearch}
+        >
           Search
         </Button>
       </div>
