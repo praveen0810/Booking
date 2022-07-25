@@ -11,11 +11,17 @@ import {
   Image,
   Button,
 } from "@chakra-ui/react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const HotelList = ({ hotels }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (id) => {
+    navigate(`/hotels/${id}`);
+  };
   return (
     <>
-      <Center py={6}>
+      <Center py={6} onClick={() => handleClick(hotels?._id)}>
         <Box
           // maxW={"400px"}
           w={"full"}

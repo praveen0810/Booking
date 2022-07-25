@@ -20,7 +20,6 @@ const HotelLists = () => {
   const handleClick = () => {
     reFetch();
   };
-  console.log("data", data);
   return (
     <>
       <Flex padding={"0px 80px"} marginTop="20px">

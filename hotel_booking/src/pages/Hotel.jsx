@@ -5,8 +5,14 @@ import { Flex, Box, Grid, Heading, Text, Stack } from "@chakra-ui/react";
 import HotelLeft from "../components/hotelDetails/HotelLeft";
 import Map from "../components/hotelDetails/Map";
 import SearchLocatin from "../components/hotelDetails/SearchLocatin";
-
+import { useLocation } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 const Hotel = () => {
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
+  const { data, laoding } = useFetch(`/hotels/find/${path}`);
+
+  console.log("data", data);
   const [selectPosition, setSelectPosition] = useState(null);
   return (
     <>
@@ -24,7 +30,7 @@ const Hotel = () => {
       >
         <Flex gap={5} pb="3">
           <Box flex="0.8">
-            <HotelLeft />
+            <HotelLeft data={data} />
           </Box>
           <Box flex="1">
             <Box

@@ -46,18 +46,10 @@ const photos = [
   },
 ];
 
-const HotelLeft = () => {
+const HotelLeft = ({ data }) => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const handleOpen = (i) => {
-    setSlideNumber(i);
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleMove = (direction) => {
     let newSlideNumber;
@@ -74,43 +66,21 @@ const HotelLeft = () => {
   return (
     <Box>
       <Heading fontSize={"xl"} color="#319795">
-        Tower Street Apartments
+        {data?.name}
       </Heading>
       <Stack direction={"row"} alignItems="center">
         <Icon as={GoLocation} />
         <Text fontSize={"sm"} pb="2">
-          Elton St 125 New york
+          {data?.address}
         </Text>
       </Stack>
       <Text fontSize={"sm"} color="#319795" pb="3">
-        Excellent location – 500m from center
+        Excellent location – {data?.distance} from center
       </Text>
       <Text fontSize="small" color="#00b300">
         Book a stay over $114 at this property and get a free airport taxi
       </Text>
 
-      {/* {open && (
-        <div className="slider">
-          <Icon
-            as={AiOutlineClose}
-            className="close"
-            onClick={() => setOpen(false)}
-          />
-          <Icon
-            as={AiOutlineArrowLeft}
-            className="arrow"
-            onClick={() => handleMove("l")}
-          />
-          <div className="sliderWrapper">
-            <img src={photos[slideNumber].src} alt="" className="sliderImg" />
-          </div>
-          <Icon
-            as={AiOutlineRightCircle}
-            className="arrow"
-            onClick={() => handleMove("r")}
-          />
-        </div>
-      )} */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -125,7 +95,11 @@ const HotelLeft = () => {
               />
               <div className="sliderWrapper">
                 <img
-                  src={photos[slideNumber].src}
+                  src={
+                    Object.keys(data).length > 0
+                      ? data?.photos[slideNumber]
+                      : ""
+                  }
                   alt=""
                   className="sliderImg"
                 />
@@ -147,28 +121,25 @@ const HotelLeft = () => {
       </Modal>
       <Box>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-          {photos.map((photo, i) => (
-            <Box key={i}>
-              <Image
-                onClick={onOpen}
-                src={photo.src}
-                alt=""
-                className="hotelImg"
-                width="400px"
-              />
-            </Box>
-          ))}
+          {Object.keys(data).length > 0 ? (
+            data.photos.map((photo, i) => (
+              <Box key={i}>
+                <Image
+                  onClick={onOpen}
+                  src={photo}
+                  alt=""
+                  className="hotelImg"
+                  width="400px"
+                />
+              </Box>
+            ))
+          ) : (
+            <h1> jcijiecn</h1>
+          )}
         </Grid>
       </Box>
       <Text pt="3" fontSize="small">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus
-        maiores veritatis perspiciatis consectetur quaerat dolore dolor magnam
-        reiciendis eaque doloremque aliquam perferendis laboriosam aliquid,
-        expedita rem cupiditate quis exercitationem commodi. Lorem ipsum dolor
-        sit amet consectetur, adipisicing elit. Voluptatibus maiores veritatis
-        perspiciatis consectetur quaerat dolore dolor magnam reiciendis eaque
-        doloremque aliquam perferendis laboriosam aliquid, expedita rem
-        cupiditate quis exercitationem commodi.
+        {data?.desc}
       </Text>
     </Box>
   );
